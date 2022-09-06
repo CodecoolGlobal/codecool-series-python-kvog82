@@ -1,0 +1,24 @@
+{% extends 'index.html' %}
+
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/actors.js') }}"></script>
+{% endblock scripts %}
+
+
+{% block page_title %}
+   Actors
+{% endblock page_title %}
+
+
+{% block headline %}
+    Actors
+{% endblock headline %}
+
+{% block content %}
+    <ul>
+        {% for actor in actors %}
+            <li class="actor">{{ actor.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock content %}

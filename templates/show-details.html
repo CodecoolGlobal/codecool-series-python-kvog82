@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+
+
+{% block page_title %}
+   {{ show_details[0].get('title') }}
+{% endblock page_title %}
+
+
+{% block headline %}
+{% endblock headline %}
+
+
+{% block content %}
+    <div class="card detailed-view">
+        <div class="row">
+
+            {% if show_details[0].get('trailer') %}
+            <div id="player" class="poster col col-third" title="{{ show_details[0].get('trailer') }}"></div>
+            <script src="{{ url_for('static', filename='/js/embed-youtube.js') }}"></script>
+            {% endif %}
+
+            <div class="col col-twothird"></div>
+            <h2>{{ show_details[0].get('title') }}</h2>
+                    <p class="small grayed">{{ show_details[0].get('runtime') }}
+                        <span class="separator">|</span>
+                        {{ show_details[0].get('genres') }}
+                        <span class="separator">|</span>
+                         ☆ {{ show_details[0].get('rating') }}</p>
+                    <p>{{ show_details[0].get('overview') }}</p>
+        </div>
+
+        <div>
+            <p><b>Top actors:</b>
+                {% if show_actors[0] == None %}
+                    no actors
+
+                {% elif show_actors|length == 1 %}
+                    <a href="#">{{ show_actors[0] }}</a>
+
+                {% elif show_actors|length == 2 %}
+                    <a href="#">{{ show_actors[0] }}</a>
+                    ,&nbsp<a href="#">{{ show_actors[1] }}</a>
+
+                {% elif show_actors|length == 3 %}
+                    <a href="#">{{ show_actors[0] }}</a>
+                    ,&nbsp<a href="#">{{ show_actors[1] }}</a>
+                    ,&nbsp<a href="#">{{ show_actors[2] }}</a>
+
+                {% endif %}
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <h2>Seasons</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    <th>Title</th>
+                    <th>Overview</th>
+                </tr>
+            </thead>
+            <tbody class="show-seasons">
+                {% for season in show_seasons %}
+                <tr>
+                    <td>{{ season.season_number }}</td>
+                    <td class="col-season">{{ season.title }}</td>
+                    <td>
+                        {% if season.overview %}
+                        {{ season.overview }}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock content %}

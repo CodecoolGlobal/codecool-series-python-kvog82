@@ -1,0 +1,36 @@
+{% extends 'index.html' %}
+
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/filter_actors.js') }}"></script>
+{% endblock scripts %}
+
+
+{% block page_title %}
+    Filter actors
+{% endblock page_title %}
+
+
+{% block headline %}
+    Filter actors
+{% endblock headline %}
+
+
+{% block content %}
+    <label for="genre">Select Genre:</label>
+    <select name="genre" id="genre">
+    {% for genre in genres %}
+       <option value="{{ genre.name }}">{{ genre.name }}</option>
+    {% endfor %}
+    </select>
+
+    <br><br>
+    <label for="character">Choose character:
+        <input type="text" name="character" class="character">
+    </label>
+
+    <div id="actors-result">
+
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,38 @@
+{% extends 'index.html' %}
+
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/data_handler.js') }}"></script>
+{% endblock scripts %}
+
+
+{% block page_title %}
+    Ratings
+{% endblock page_title %}
+
+
+{% block headline %}
+    Ratings
+{% endblock headline %}
+
+
+{% block content %}
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Show</th>
+            <th>Above / below average rating</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for show in shows_with_ratings %}
+          <tr>
+            <td>{{ show.title }}</td>
+            <td class="text-center">{{ show.rating }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </div>
+{% endblock content %}

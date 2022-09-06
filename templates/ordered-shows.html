@@ -1,0 +1,33 @@
+{% extends 'index.html' %}
+
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/ordered_shows.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/data_handler.js') }}"></script>
+{% endblock scripts %}
+
+
+{% block page_title %}
+    Ordered shows
+{% endblock page_title %}
+
+
+{% block headline %}
+    Ordered shows
+{% endblock headline %}
+
+
+{% block content %}
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th class="action-column desc col-half">Show</th>
+            <th class="col-half">Rating</th>
+          </tr>
+        </thead>
+        <tbody class="ordered-shows">
+        </tbody>
+      </table>
+    </div>
+{% endblock content %}

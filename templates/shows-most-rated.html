@@ -1,0 +1,76 @@
+{% extends 'index.html' %}
+
+
+{% block css %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/pagination.css') }}">
+{% endblock css %}
+
+
+{% block scripts %}
+    <script type="module" src="{{ url_for('static', filename='js/shows_most_rated_pagination.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/shows_most_rated_sorting.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/data_handler.js') }}"></script>
+    <script type="module" src="{{ url_for('static', filename='js/shows_most_rated_display_shows.js') }}"></script>
+{% endblock scripts %}
+
+
+{% block page_title %}
+   Shows
+{% endblock page_title %}
+
+
+{% block headline %}
+   Shows
+{% endblock headline %}
+
+
+{% block content %}
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th class="sort-column" id="title">Title</th>
+            <th class="sort-column" id="year">Year</th>
+            <th class="sort-column" id="runtime">Runtime (min)</th>
+            <th class="sort-column action-column" id="rating">Rating</th>
+            <th>Genres</th>
+            <th>Trailer</th>
+            <th>Homepage</th>
+          </tr>
+        </thead>
+        <tbody class="shows-most-rated">
+          {% for show in shows_most_rated %}
+          <tr>
+            <td><a href="{{ url_for('show_details', id=show['id']) }}">{{ show['title'] }}</a></td>
+            <td>{{ show['year'] }}</td>
+            <td>{{ show['runtime'] }}</td>
+            <td class="action-column">{{ show['rating'] }}</td>
+            <td>{{ show['genre'] }}</td>
+            <td>{% if show['trailer'] %}
+                 <a href="{{ show['trailer'] }}" target="_blank">{{ show['trailer'] }}</a>
+                 {% else %}
+                 no URL
+                 {% endif %}
+            </td>
+            <td>{% if show['homepage'] %}
+                 <a href="{{ show['homepage'] }}" target="_blank">{{ show['homepage'] }}</a>
+                 {% else %}
+                 no URL
+                 {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+
+    <div class="card pagination text-center">
+        <a id="page-down"><<</a>
+
+        {% for page in range(1, number_of_pages + 1) %}
+            <a class="pagination">{{ page }}</a>
+        {% endfor %}
+
+        <a id="page-up">>></a>
+    </div>
+{% endblock content %}
