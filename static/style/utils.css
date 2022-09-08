@@ -20,3 +20,15 @@
 
     padding: 0 5px;
 }
+
+.grey {
+    background-color: #777777;
+}
+
+.green {
+  background-color: darkseagreen;
+}
+
+.invisible {
+  visibility: hidden;
+}
