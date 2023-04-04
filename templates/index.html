@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 
         <title>{% block page_title %}
-            CsED
+            Codecool Series
         {% endblock page_title %}</title>
 
 
@@ -45,34 +45,49 @@
     <header class="clearfix">
         <img id="header-logo" src="{{ url_for('static', filename='assets/codecool-logo.png') }}" alt="Codecool Logo">
         <span id="header-title" class="title">Codecool Series DB</span>
-        <div id="header-auth">
-            <button type="button" id="bt-register">Register</button>
-            <button type="button" id="bt-login">Login</button>
-        </div>
+{#        <div id="header-auth">#}
+{#            <button type="button" id="bt-register">Register</button>#}
+{#            <button type="button" id="bt-login">Login</button>#}
+{#        </div>#}
     </header>
     <section>
         <h1 class="title text-center">
             {% block headline %}
-                Welcome page
+                Welcome TV show lovers!
             {% endblock headline %}
         </h1>
 
         {% block content %}
         <div class="card">
-            <h2>Welcome TV show lovers!</h2>
             <p>This great site is happy to bring you your favourite TV show's <i>details</i>.</p>
+            <ol>
+                <li>
+                    <a href="{{ '/shows/most-rated/' }}">Shows</a>
+                </li>
+                <li>
+                    <a href="{{ '/actors' }}">Actors</a>
+                </li>
+                <li>
+                    <a href="{{ '/ratings' }}">Show ratings</a>
+                </li>
+                <li>
+                    <a href="{{ '/ordered-shows' }}">Ordered shows</a>
+                </li>
+                <li>
+                    <a href="{{ '/filter-actors' }}">Actors by genre</a>
+                </li>
+                <li>
+                    <a href="{{ '/birthday-actors' }}">Actors with birthdays</a>
+                </li>
+            </ol>
             <p></p>
-            <p>Okay, actually this is a designed dumb page without any logic.</p>
-            <p>You can find a navigational element, the so called "breadcrumb" above the page's title. Use it for
-                in-depth
-                navigation.
-            </p>
         </div>
         <div class="card">
+            <h3>All shows:</h3>
             <ul>
                 {% for show in shows %}
                     <li>
-                        <a href="{{ '/tv-show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
+                        <a href="{{ '/show/' + (show['id'] | string) }}">{{ show['title'] }}</a>
                     </li>
                 {% endfor %}
             </ul>
@@ -80,7 +95,7 @@
         {% endblock content %}
     </section>
     <footer>
-        Copyright, bla-bla
+        Codecool Solo Project, created by Katharina Vogler 2022
     </footer>
 </div>
 <div class="background">
